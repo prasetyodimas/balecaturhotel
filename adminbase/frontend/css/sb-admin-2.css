@@ -1,0 +1,1063 @@
+/*!
+ * Start Bootstrap - SB Admin 2 Bootstrap Admin Theme (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+@font-face {
+    font-family: 'Glyphicons Halflings';
+    src: url('fonts/glyphicons-halflings-regular.eot');
+    src: url('fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), 
+    url('fonts/glyphicons-halflings-regular.woff2') format('woff2'), 
+    url('fonts/glyphicons-halflings-regular.woff') format('woff'), 
+    url('fonts/glyphicons-halflings-regular.ttf') format('truetype'), 
+    url('fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+.glyphicon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.glyphicon-bed:before {
+    content: "\e219";
+}
+body {
+    background-color: #f8f8f8;
+}
+/* TABLE HEAD */
+.table>caption+thead>tr:first-child>th, 
+.table>colgroup+thead>tr:first-child>th,
+.table>thead:first-child>tr:first-child>th,
+.table>caption+thead>tr:first-child>td, 
+.table>colgroup+thead>tr:first-child>td, 
+.table>thead:first-child>tr:first-child>td {
+    background: #565656;
+    color: #fff;
+}
+#disabled{
+    opacity: .65;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+#wrapper {
+    width: 100%;
+}
+#page-wrapper {
+    padding: 0 15px;
+    min-height: 568px;
+    background-color: #fff;
+}
+
+@media(min-width:768px) {
+    #page-wrapper {
+        position: inherit;
+        margin: 0 0 0 250px;
+        padding: 0 30px;
+        border-left: 1px solid #e7e7e7;
+    }
+}
+/*HEADING STYLE*/
+.font-sizerheading .page-header{
+        font-size: 21px;
+}
+.navbar-top-links {
+    margin-right: 0;
+}
+
+.navbar-top-links li {
+    display: inline-block;
+}
+
+.navbar-top-links li:last-child {
+    margin-right: 15px;
+}
+
+.navbar-top-links li a {
+    padding: 15px;
+    min-height: 50px;
+}
+
+.navbar-top-links .dropdown-menu li {
+    display: block;
+}
+
+.navbar-top-links .dropdown-menu li:last-child {
+    margin-right: 0;
+}
+
+.navbar-top-links .dropdown-menu li a {
+    padding: 3px 20px;
+    min-height: 0;
+}
+
+.navbar-top-links .dropdown-menu li a div {
+    white-space: normal;
+}
+
+.navbar-top-links .dropdown-messages,
+.navbar-top-links .dropdown-tasks,
+.navbar-top-links .dropdown-alerts {
+    width: 310px;
+    min-width: 0;
+}
+
+.navbar-top-links .dropdown-messages {
+    margin-left: 5px;
+}
+
+.navbar-top-links .dropdown-tasks {
+    margin-left: -59px;
+}
+
+.navbar-top-links .dropdown-alerts {
+    margin-left: -123px;
+}
+
+.navbar-top-links .dropdown-user {
+    right: 0;
+    left: auto;
+}
+
+.sidebar .sidebar-nav.navbar-collapse {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.sidebar .sidebar-search {
+    padding: 15px;
+}
+
+.sidebar ul li {
+    border-bottom: 1px solid #e7e7e7;
+    list-style: none;
+}
+.sidebar ul li ul li {
+    border-top: 1px solid #e7e7e7;
+    border-bottom: none;
+}
+.sidebar ul li ul li a{
+    padding: 10px 0;
+    width: 100%;
+    display: inline-block;
+}
+.sidebar ul li a.active {
+    background-color: #eee;
+}
+
+.sidebar .arrow {
+    float: right;
+}
+.sidebar .has-children { 
+    width: 20px;
+    display: block;
+}
+.sidebar .has-children:before { 
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+.sidebar .fa.arrow:before {
+    content: "\f104";
+}
+
+.sidebar .active>a>.fa.arrow:before {
+    content: "\f107";
+}
+
+.sidebar .nav-second-level li,
+.sidebar .nav-third-level li {
+    border-bottom: 0!important;
+}
+
+.sidebar .nav-second-level li a {
+    padding-left: 37px;
+}
+
+.sidebar .nav-third-level li a {
+    padding-left: 52px;
+}
+
+@media(min-width:768px) {
+    .sidebar {
+        z-index: 1;
+        position: absolute;
+        width: 250px;
+        margin-top: 51px;
+    }
+
+    .navbar-top-links .dropdown-messages,
+    .navbar-top-links .dropdown-tasks,
+    .navbar-top-links .dropdown-alerts {
+        margin-left: auto;
+    }
+}
+
+.btn-outline {
+    color: inherit;
+    background-color: transparent;
+    transition: all .5s;
+}
+
+.btn-primary.btn-outline {
+    color: #428bca;
+}
+
+.btn-success.btn-outline {
+    color: #5cb85c;
+}
+
+.btn-info.btn-outline {
+    color: #5bc0de;
+}
+
+.btn-warning.btn-outline {
+    color: #f0ad4e;
+}
+
+.btn-danger.btn-outline {
+    color: #d9534f;
+}
+
+.btn-primary.btn-outline:hover,
+.btn-success.btn-outline:hover,
+.btn-info.btn-outline:hover,
+.btn-warning.btn-outline:hover,
+.btn-danger.btn-outline:hover {
+    color: #fff;
+}
+
+.chat {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.chat li {
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #999;
+}
+
+.chat li.left .chat-body {
+    margin-left: 60px;
+}
+
+.chat li.right .chat-body {
+    margin-right: 60px;
+}
+
+.chat li .chat-body p {
+    margin: 0;
+}
+
+.panel .slidedown .glyphicon,
+.chat .glyphicon {
+    margin-right: 5px;
+}
+
+.chat-panel .panel-body {
+    height: 350px;
+    overflow-y: scroll;
+}
+
+.login-panel {
+    margin-top: 15%;
+}
+
+.flot-chart {
+    display: block;
+    height: 400px;
+}
+
+.flot-chart-content {
+    width: 100%;
+    height: 100%;
+}
+
+.dataTables_wrapper {
+    position: relative;
+    clear: both;
+}
+
+table.dataTable thead .sorting,
+table.dataTable thead .sorting_asc,
+table.dataTable thead .sorting_desc,
+table.dataTable thead .sorting_asc_disabled,
+table.dataTable thead .sorting_desc_disabled {
+    background: 0 0;
+}
+
+table.dataTable thead .sorting_asc:after {
+    content: "\f0de";
+    float: right;
+    font-family: fontawesome;
+}
+
+table.dataTable thead .sorting_desc:after {
+    content: "\f0dd";
+    float: right;
+    font-family: fontawesome;
+}
+
+table.dataTable thead .sorting:after {
+    content: "\f0dc";
+    float: right;
+    font-family: fontawesome;
+    color: rgba(50,50,50,.5);
+}
+
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.428571429;
+}
+
+.btn-circle.btn-lg {
+    width: 50px;
+    height: 50px;
+    padding: 10px 16px;
+    border-radius: 25px;
+    font-size: 18px;
+    line-height: 1.33;
+}
+
+.btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    border-radius: 35px;
+    font-size: 24px;
+    line-height: 1.33;
+}
+
+.show-grid [class^=col-] {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px solid #ddd;
+    background-color: #eee!important;
+}
+
+.show-grid {
+    margin: 15px 0;
+}
+
+.huge {
+    font-size: 40px;
+}
+
+.panel-green {
+    border-color: #5cb85c;
+}
+
+.panel-green .panel-heading {
+    border-color: #5cb85c;
+    color: #fff;
+    background-color: #5cb85c;
+}
+
+.panel-green a {
+    color: #5cb85c;
+}
+
+.panel-green a:hover {
+    color: #3d8b3d;
+}
+
+.panel-red {
+    border-color: #d9534f;
+}
+
+.panel-red .panel-heading {
+    border-color: #d9534f;
+    color: #fff;
+    background-color: #d9534f;
+}
+
+.panel-red a {
+    color: #d9534f;
+}
+
+.panel-red a:hover {
+    color: #b52b27;
+}
+
+.panel-yellow {
+    border-color: #f0ad4e;
+}
+
+.panel-yellow .panel-heading {
+    border-color: #f0ad4e;
+    color: #fff;
+    background-color: #f0ad4e;
+}
+
+.panel-yellow a {
+    color: #f0ad4e;
+}
+
+.panel-yellow a:hover {
+    color: #df8a13;
+}
+
+input.form-control.error, textarea.form-control.error, select.form-control.error {
+    border-color:#a94442;
+    -webkit-box-shadow:
+    inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow:inset 0 1px 1px rgba(0,0,0,.075);
+}
+input.form-control.error:focus, textarea.form-control.error:focus, select.form-control.error:focus {
+    border-color: #843534;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 6px #ce8483;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 6px #ce8483;
+}
+.error {
+    font-size: 12px;
+    color: #a94442;
+    display: inline-block;
+}
+.navbar.navbar-default.navbar-static-top {
+    background-color:#dd4814;
+    border-color:#bf3e11;
+}
+.navbar-default.navbar-static-top .navbar-brand {
+    color: #fff;
+}
+.navbar-default.navbar-static-top .navbar-brand:hover, 
+.navbar-default.navbar-static-top .navbar-brand:focus {
+    color: #ccc;
+    background-color: transparent;
+}
+.navbar-default.navbar-static-top .nav.navbar-top-links.navbar-right a{ 
+    color: #000;
+}
+.nav.navbar-top-links.navbar-right>li>a:hover, 
+.nav.navbar-default.navbar-static-top>li>a:focus {
+    text-decoration: none;
+    background-color: #ae3910;
+}
+.nav .open>a, .nav .open>a:hover, .nav .open>a:focus {
+    background-color: #ae3910;
+    border-color: #bf3e11;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: hsl(0, 100%, 100%);
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #bf3e11;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 0px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+    color: #262626;
+    text-decoration: none;
+    background-color: #ae3910;
+}
+.dropdown-menu .divider {
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+    background-color: #ae3910;
+}
+
+.navigation-formsubmit2{
+    display: inline-block;
+    /* width: 100%; */
+    margin-left: 120px;
+    margin-top: 20px;
+}
+
+/* CONFIGURE  MAN MEMBER */
+
+.wrapp-manmember{
+    width: 100%;
+    display: inline-block;
+}
+.wrapp-manmember, .container-manmember{
+    padding: 5px;
+}
+.wrapp-fotomember{
+    display: inline-block;
+    float: right;
+    width: 30%;
+    height: auto;
+    margin-top: 23px;
+}
+.box-fotomember{
+    text-align: center;
+    margin-top: 10px;
+}
+.bingkai-member{
+    display: inline-block;
+}
+.bingkai-member, .resizer-foto{
+    width: 300px;
+    height: auto;
+    border-radius: 7px;
+}
+.bingkai-member .heading-fotomember{
+    font-size: 20px;
+    text-align: center;
+}
+.layanan_tambahanmenus{
+    background: #EEEEEE;
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid #DCD7D7;
+    margin-bottom: 20px;
+}
+.text-areaconfig{
+    height:100px !important;
+ }
+.space-margin {
+    margin-top: 12px;
+    margin-bottom: 10px;
+
+ }
+/* MAN RESERVASI ONLINE ADMIN */
+/* SETTING TABLES */
+.tables-bordered{
+    font-size: 13px;
+}
+.bg-thead{
+    background: #5F5D5D;
+    color: #fff;
+
+}
+.content-actionadmin{
+    padding: 18px 0px;
+    display: inline-block;
+    
+}
+.content-actionadmin .iconia-statueadmin{
+    font-size: 12px;
+    margin-left: 8px;
+
+}
+.hide-innerinvoice{
+    display: inline-block;
+}
+.style-headinginvoice{
+    text-align: center;
+    margin-bottom: 60px;
+
+}
+.wrapper-invoice{
+    margin-top: 70px;
+} 
+.hide-innerinvoice .wrapper-invoice{
+    padding: 20px;
+   /* border: 1px solid #E0E0E0;*/
+    font-weight: bold;
+  /*  border-radius: 4px;*/
+    margin-top: 35px;
+    width: 100%;
+    height: auto;
+    display: inline-block;
+}
+.maininner-outerinovoice{
+    padding: 20px;
+}
+.inner-bordered-invoice{
+/*    border: 1px solid #E0E0E0;*/
+ /*   padding: 20px;*/
+    margin-top: 21px;
+}
+.invoice-menusize{
+    width: 100%;
+    height: auto;
+    display: inline-block;
+    padding: 3px;
+}
+.invoice-menusize .invoicelabels{
+    float: left;
+    font-weight: normal;
+}
+.rincian-taxroom{
+    font-size: 12px;
+    font-weight: normal;
+    margin-left: 10px;
+    margin-top: 18px;
+}
+.from-space1 {
+    margin: -4px 107px 0px !important;
+    display: inline-block;
+    float: left;
+    font-weight: normal;
+}
+.from-space2 {
+    margin: -4px 67px 0px !important;
+    display: inline-block;
+    float: left;
+    font-weight: normal;
+    width: 65%;
+}
+.from-space3 {
+    margin: -4px 22px 0px !important;
+    display: inline-block;
+    float: left;
+    font-weight: normal;
+    width: 65%;
+}
+.from-space4 {
+    margin: -4px 93px 0px !important;
+    display: inline-block;
+    float: left;
+    font-weight: normal;
+}
+.form-invoice{
+    display: block;
+     width: 100%; 
+    height: 30px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+/*STATUS TRANSAKSI RED*/
+.reserve-statues-red{
+
+    color: #fff;
+    background: #ff0000;
+    }
+/* TRANSAKSI ONLINE CHECK IN */
+.wrapper-detailreserveonline{
+     
+}
+.wrapper-detailreserveonline .main-containerreserveonline{
+    display: inline-block;
+    width: 100%;
+    height: auto;
+}
+
+/* CONFIG TRANSAKSI LANGSUNG */
+.form-reserveofline{
+    display:inline-block;
+    width: 60%;
+    height: auto;
+    margin-top: 40px;
+}
+
+
+/*CSS CONFRIMATION ADMIN*/
+.kdbooking{
+    display: inline-block;
+    margin-left: 108px;
+}
+.idmember{
+    display: inline-block;
+    margin-left: 127px;
+}
+.NamaPemesan{
+    display: inline-block;
+    margin-left: 94px;
+}
+.TipeKamar{
+    display: inline-block;
+    margin-left: 123px;
+}
+.HargaKamar{
+    display: inline-block;
+    margin-left: 112px;
+}
+.Checkin{
+    display: inline-block;
+    margin-left: 146px;
+}
+.Checkout{
+    display: inline-block;
+    margin-left: 137px;
+}
+.accKamar{
+     margin-left: 129px;
+}
+.JumlahBayar{
+    display: inline-block;
+    margin-left: 89px;
+}
+.JumlahbelumBayar{
+    display: inline-block;
+    margin-left: 131px;
+    color:red;
+}
+.statuspmbyran{
+    margin-left: 95px;
+    display: inline-block;
+}
+.jmlah_yangharusdibayar{
+    display: inline-block;
+    margin-left: 10px;
+}
+.form-accKamar{
+    padding: 2px;
+    cursor: pointer;
+}
+.berapaOrang{
+    display: inline-block;
+    margin-left: 107px;
+}
+.JenisBank{
+    display: inline-block;
+    margin-left: 150px;
+}.JenisPembayaran{
+    display: inline-block;
+    margin-left: 100px;
+}
+.kategori-rental{
+    display: inline-block;
+    margin-left: 143px;
+}
+.SewaRental{
+    display: inline-block;
+    margin-left: 112px;
+}
+.ExtraBed{
+    display: inline-block;
+    margin-left: 166px;
+}   
+.ketentuan-termsandcondition{
+    margin-top: 10px;
+    /*width: 70%;*/
+    display: inline-block;
+    font-size: 12px;
+}
+.companyname{
+    display: inline-block;
+    margin-left: 77px;
+}
+/* JQUERY TABS */
+.tabs-menu {
+        height: 30px;
+        float: left;
+        clear: both;
+        font-size: 12px;
+        padding: 0px;
+}
+.tabs-menu li {
+        height: 30px;
+        line-height: 30px;
+        float: left;
+        margin-right: 5px;
+        background-color: #FFF;
+        border-top: 1px solid #d4d4d1;
+        border-right: 1px solid #d4d4d1;
+        border-left: 1px solid #d4d4d1;
+        list-style: outside none;
+}
+
+.tabs-menu li.reserver {
+        position: relative;
+        background-color: #DD4814;
+        border-bottom: 1px solid #fff;
+        z-index: 5;
+}
+
+.tabs-menu li a {
+        padding: 10px;
+        text-transform: uppercase;
+        color: #DD4814;
+        text-decoration: none;
+}
+
+.tabs-menu .reserver a {
+        color: #FFF;
+}       
+
+.tab {
+        border: 1px solid #d4d4d1;
+        background-color: #fff;
+        float: left;
+        margin-bottom: 20px;
+        width: auto;
+}
+
+.tab-content {
+        width: 660px;
+        display: none;
+}
+
+#tab-1 {
+        display: inline-block;
+        width: 100%;
+        height: auto;
+}
+
+#tab-2 {
+        display: inline-block;
+        width: 100%;
+        height: auto;
+}
+.top-containerright{
+    float: right;
+    display: inline-block;
+}
+.removed, .removeds{
+    cursor: pointer;
+    display: inline-block;
+    float: right;
+    color: #F00;
+}
+.click-function{
+    cursor: pointer;
+}
+.tables-seacrh{
+    width: 50%;
+    display: table;
+    margin-top: 20px;
+    font-size: 13px;
+}
+.thead-search{
+    background: #A1A1A1;
+    border-radius: 3px;
+    color: #fff;
+}
+.tables-seacrh,.thead-search,.tables-search, .tr-search,.th-search{
+    padding: 4px 0px 3px 9px;
+}
+.td-search{
+    padding: 5px 3px 3px 9px;
+    border: 1px solid #D5D5D5;
+}
+/*=== CONFIGURE MARGIN BOTTOM CONTENT ===*/
+.clearfix-bottom-100{
+    margin-bottom: 100px;
+}
+/*=== CONFIG HEADING LAPORAN ===*/
+.laporan-heading{
+    margin-bottom:60px;
+    display: inline-block;
+}
+.main-headermember{
+    text-align: center !important;
+    margin-bottom: 50px;
+}
+.main-headermember{
+    display:block;
+    text-align: center;
+}
+/* =========== CHECK KAMAR BILING ======= */
+/*thumbnail green*/
+.thumbnail, .coloring-thumbnail-green {
+        margin-bottom:0;
+        height:100px;
+        line-height: 85px;
+        background: #2BE214;
+        color: #fff;
+        font-size: 20px;
+        text-decoration: none !important;
+        margin-top: 10px;
+        margin-right: -16px;
+}
+/*thumbnail yellow*/
+.thumbnail, .coloring-thumbnail-yellow {
+        margin-bottom:0;
+        height:100px;
+        line-height: 85px;
+        background: #fff82a;
+        color: #fff;
+        font-size: 20px;
+        text-decoration: none !important;
+        margin-top: 10px;
+        margin-right: -16px;
+}
+/*thumbnail red*/
+.thumbnail, .coloring-thumbnail-red {
+        margin-bottom:0;
+        height:100px;
+        line-height: 85px;
+        background: #ea0303;
+        color: #fff;
+        font-size: 20px;
+        text-decoration: none !important;
+        margin-top: 10px;
+        margin-right: -16px;
+}
+/*thumbnail grey*/
+.thumbnail, .coloring-thumbnail-grey {
+        margin-bottom:0;
+        height:100px;
+        line-height: 85px;
+        color: #fff;
+        font-size: 20px;
+        text-decoration: none !important;
+        margin-top: 10px;
+        margin-right: -16px;
+}
+/*thumbnail orange*/
+.thumbnail, .coloring-thumbnail-orange {
+        margin-bottom:0;
+        height:100px;
+        line-height: 85px;
+       /* background:#6b6b6b;*/
+        color: #fff;
+        font-size: 20px;
+        text-decoration: none !important;
+        margin-top: 10px;
+        margin-right: -16px;
+}
+.font-sizecheck-kamar{
+        font-size: 12px !important;
+        display: inline-block;
+        position: relative;
+        width: 100%;
+}
+.coloring-thumbnail-red{
+        background: rgb(226, 20, 20);
+}
+.coloring-thumbnail-yellow{
+        background: #E3DD1A;
+}
+.coloring-thumbnail-green{
+        background: #2BE214;
+}
+.coloring-thumbnail-grey{
+        background: #6b6b6b;
+}
+.coloring-thumbnail-orange{
+        background: #ff8000;
+}
+.coloring-thumbnail:hover{
+        border: 2px solid #757575;
+}
+.wrapper-statuskamar{
+        margin-top:40px;
+}
+.block-statreserve1 {
+        background: #EA0303;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+}
+.block-statreserve2 {
+        background: #FFF82A;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+}
+.block-statreserve3 {
+        background: #2BE214;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+}
+.block-statreserve4 {
+        background: #6b6b6b;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+}
+.block-statreserve5 {
+        background: #ff8000;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+}
+.block-statreserve1 .statreseve-heading{
+        margin-left: 28px;
+        font-weight: bold;
+}
+.block-statreserve2 .statreseve-heading{
+        margin-left: 28px;
+        font-weight: bold;
+}
+.block-statreserve3 .statreseve-heading{
+        margin-left: 28px;
+        font-weight: bold;
+}
+.block-statreserve4 .statreseve-heading{
+        margin-left: 28px;
+        font-weight: bold;
+}
+.block-statreserve5 .statreseve-heading{
+        margin-left: 28px;
+        font-weight: bold;
+}
+
+.block-barstatus{
+        float: none;
+        display: block;
+        width: 100%;
+}
+.flex{
+        display: inline-flex;
+}
+.detil-transaction .man-kdbook{margin-left: 200px; } 
+.detil-transaction .man-idmember{margin-left: 220px; } 
+.detil-transaction .man-namapemesan{margin-left: 187px; } 
+.detil-transaction .man-tipekamar{margin-left: 217px; } 
+.detil-transaction .man-hargakamar{margin-left: 205px; } 
+.detil-transaction .man-tanggal_pemesan{margin-left: 196px; } 
+.detil-transaction .man-checkin{margin-left: 239px; } 
+.detil-transaction .man-checkout{margin-left: 231px; } 
+.detil-transaction .man-checkout{margin-left: 231px; } 
+.detil-transaction .man-totalmenginap{margin-left: 194px; } 
+.detil-transaction .man-nokamar{margin-left: 228px; } 
+.detil-transaction .man-umlahorang{margin-left: 206px; } 
+.detil-transaction .man-statususerbook{margin-left: 225px;}
+.detil-transaction .man-nama_atasnama{margin-left: 183px;}
+.detil-transaction .man-company_or_other{margin-left: 122px;}
+.pembayaran-transaksi .man-carabayar{margin-left: 225px; } 
+.pembayaran-transaksi .man-jenispelunasan{margin-left: 193px;}
+.pembayaran-transaksi .man-jenisbank{margin-left: 225px;}
+.pembayaran-transaksi .man-totalbayar{margin-left: 223px;}
+.pembayaran-transaksi .man-tglbayar{margin-left: 203px;}
+.pembayaran-transaksi .man-buktipembayaran{margin-left: 183px;}
+.pembayaran-transaksi .man-hutangbayar{margin-left: 207px; color: red;}
+.other-transac-kategori-rental{margin-left: 100px;}
+.other-transac-nama_kendaraan{margin-left: 81px;}
+.other-transac-tgl_awal_sewa{margin-left: 105px;}
+.other-transac-harga_kendaraan{margin-left: 81px;}
+.other-transac-harga-extrabed{margin-left: 95px;}
+/*=========== KONFRIMASI CHECKIN STYLES ==============*/
+.man-detail-idmember{margin-left: 100px;}
+.man-detail-namapemesan{margin-left: 67px;}
+.man-detailalamat{margin-left: 100px;}
+.man-detail-alamat{margin-left: 125px;}
+.man-detail-kebangsaan{margin-left: 90px;}
+.man-nama_atasnama{margin-left: 65px;}
+.man-company_or_other{margin-left: 5px;}
+.detail-pemesanan-checkin{margin-left: 119px;}
+.detail-pemesanan-checkout{margin-left: 111px;}
+.detail-pemesanan-tglpesan{margin-left: 79px;}
+.detail-pemesanan-lamamenginap{margin-left: 69px;}
+.detail-pemesanan-kdbooking{margin-left: 83px;}
+.detail-pemesanan-tipekamar{margin-left: 100px;}
+.detail-pemesanan-berapakamar{margin-left: 82px;}
+.information-carabayar{margin-left: 106px;}
+.information-jenisbank{margin-left: 109px;}
+.information-pelunasan{margin-left: 111px;}
+.information-jumlahbayar{margin-left: 93px;}
+.information-hutang{margin-left: 133px;}
+.information-buktipembayaran{margin-left: 65px;}
+.information-jumlahbayar{color: red;}

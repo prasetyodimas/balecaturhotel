@@ -1,0 +1,17 @@
+body { /*body container admin*/
+        background-image: url("image/bg/hotel.jpg");
+        background: #FF8C38 none repeat scroll 0% 0%;
+}
+.logo-title {
+	margin-top: 5%;
+	text-align: center;
+}
+.btn-success {
+    color: #fff;
+    background-color: #E36C1A;
+    border-color: transparent;
+}
+.btn-success:hover {
+	background-color: #C95200;
+	border-color: transparent;
+}
