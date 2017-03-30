@@ -36,6 +36,9 @@
                 }
             }
         });
+        $('#click-me').click(function(){
+            swal("Oops...", "Something went wrong!", "error");
+        });
     });
 </script>
 <div class="row">
@@ -99,12 +102,14 @@
             <div class="panel-heading">
                 Selamat Datang di Aplikasi Hotel Balecatur Inn
             </div>
-              <!--   <div class="showcase sweet">
-                    <h4>Sweet Alert</h4>
-                    <button>Show error message</button>
-                    <h5>Code:</h5>
-                    <pre><span class="attr">sweetAlert</span>(<span class="str">"Oops..."</span>, <span class="str">"Something went wrong!"</span>, <span class="str">"error"</span>);</pre>
-                </div> -->
+               <div class="showcase sweet">
+                <h4>Sweet Alert</h4>
+                <button id="click-me">Show error message</button>
+                <h5>Code:</h5>
+                <pre><span class="attr">sweetAlert</span>(<span class="str">"Oops..."</span>, <span class="str">"Something went wrong!"</span>, <span class="str">"error"</span>);</pre>
+            </div>
+            <p>Pretty cool huh? SweetAlert automatically centers itself on the page and looks great no matter if you're using a desktop computer, mobile or tablet. It's even highly customizeable, as you can see below!</p>
+
         </div>
     </div>
 </div>
