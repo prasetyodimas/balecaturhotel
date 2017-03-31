@@ -1,3 +1,6 @@
+<link href="<?php echo $site;?>library/sweetalert/sweetalert.css" type="text/css" rel="stylesheet">
+<script src="<?php echo $site;?>library/sweetalert/sweetalert.min.js"></script>
+
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('.fancybox-effects-a').fancybox();

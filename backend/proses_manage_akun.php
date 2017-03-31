@@ -1,5 +1,5 @@
-<?php include "../config/koneksi.php"; error_reporting(0);
 
+<?php include "../config/koneksi.php"; error_reporting(0);
 $act=$_GET['act'];
 
 if ($act=='update_member') {
@@ -30,11 +30,19 @@ if ($act=='update_member') {
 										   WHERE id_member  ='$_GET[id]'";
 		$sucess =mysqli_query($konek,$update_member);
 		if ($sucess) {
-			echo "<script>alert('data berhasil di update !!');</script>";
-			echo "<meta http-equiv=refresh content=0;url=$site"."index.php?modul=manageakun>";
+			echo "<script type='text/javascript'>";
+				echo "setTimeout(function(){ 
+						swal('Wow','Message','success');";
+				echo "},1000);
+				</script>";	 
+			echo "<meta http-equiv=refresh content=3;url=$site"."index.php?modul=manageakun>";
 		}else{
-			echo "<script>alert('data gagal di update !!');</script>";
-			echo "<meta http-equiv=refresh content=0;url=$site"."index.php?modul=manageakun>";
+			echo "<script type='text/javascript'>";
+				echo "setTimeout(function(){ 
+						swal('Wow','Message','success');";
+				echo "},1000);
+				</script>";	 
+			echo "<meta http-equiv=refresh content=3;url=$site"."index.php?modul=manageakun>";
 		}
     }else{
 	    //kondisi update foto baru
