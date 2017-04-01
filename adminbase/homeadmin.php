@@ -1,4 +1,4 @@
-<?php session_start(); // Ini adalah script session yang akan mengecek identitas admin (status = 0). include "../config/koneksi.php";
+<?php session_start(); 
     include "../config/koneksi.php";
 //check level session admin
 if ($_SESSION['level_admin']=="1" || $_SESSION['level_admin']=="2" || $_SESSION['level_admin']=="3" || $_SESSION['level_admin']=='4') {
@@ -34,10 +34,15 @@ if ($_SESSION['level_admin']=="1" || $_SESSION['level_admin']=="2" || $_SESSION[
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <!-- jQuery -->
+    <!-- pace css -->
+    <!--<link href="<?php echo $site;?>library/pace-master/themes/blue/pace-theme-center-atom.css" rel="stylesheet" type="text/css">-->
+    <link href="<?php echo $site;?>library/pace-master/themes/orange/pace-theme-corner-indicator.css" rel="stylesheet" type="text/css">
+    <!-- pace js-->
     <script src="<?php echo $site;?>adminbase/frontend/js/jquery-1.11.1.min.js"></script>
     <script src="<?php echo $site;?>frontend/js/jquery.validate.min.js"></script>
     <script src="<?php echo $site;?>adminbase/frontend/js/tinymce/js/tinymce/tinymce.min.js"></script>
     <script src="<?php echo $site;?>adminbase/frontend/js/jquery.number.min.js"></script>
+    <!-- PACE js-->
     <!-- DATEPICKER -->
     <script src="<?php echo $site;?>library/zebra_datepicker/zebra_datepicker.src.js"></script>
     <script src="<?php echo $site;?>library/zebra_datepicker/core.js"></script>
@@ -53,7 +58,20 @@ if ($_SESSION['level_admin']=="1" || $_SESSION['level_admin']=="2" || $_SESSION[
     <script src="../library/data_tables/jQuery.dataTables.js"></script>
     <script src="<?php echo $site; ?>library/ckeditor_config/ckeditor/ckeditor.js"></script>
     <script src="<?php echo $site; ?>library/ckeditor_config/ckfinder/ckfinder.js"></script>
+    <!--<script src="<?php echo $site;?>library/pace-master/pace.min.js" data-pace-options='{ "elements": { "selectors": [".selectors"] }, "startOnPageLoad": false }'></script>-->
+    <script src="<?php echo $site;?>library/pace-master/pace.min.js"></script>
 </head>
+<script type="text/javascript">
+    window.paceOptions = {
+        startOnPageLoad: false,
+        ajax: false, // Monitors all ajax requests on the page
+        document: true, // Checks for the existance of specific elements on the page
+        eventLag: false, // Checks the document readyState
+        elements: {
+            selectors: ['#adding-loader'] // Checks for event loop lag signaling that javascript is being executed
+        }
+    };
+</script>
 <?php
 //check hak akses user
 function HakaksesUserheader($args){
@@ -71,6 +89,12 @@ function HakaksesUserheader($args){
 
  ?>
 <body>
+<!-- <div id="preloader">
+    <div class="textload">Loading</div>
+    <div id="status">
+        <div class="spinner"></div>
+    </div>
+</div> -->
     <div id="wrapper">
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -105,6 +129,7 @@ function HakaksesUserheader($args){
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
+                   <!--  <a id="adding-loader" class="selectors" href="">klik loader</a> -->
                 </li>
                 <!-- /.dropdown -->
             </ul>
