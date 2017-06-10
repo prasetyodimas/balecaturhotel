@@ -264,14 +264,11 @@
             <td><?php echo $result['id_kamar'];?></td>
             <td><?php echo checkStatuskamar($result['status_kamar']);?></td>
             <td>
-                <div class="<?php echo $status_reserved;?> block-custom-status thumbnail"></div></td>
-            <td>
-              <a href="<?php echo "homeadmin.php?modul=man_kamar_edit&id=$result[id_kamar]"?>">
-                <i class="fa fa-edit"></i> Edit
-              </a> |
-              <a href="<?php echo "backend/proses_kamar.php?act=delete_kamar&id=$result[id_kamar]";?>" onclick="return confirm('Delete?');">
-                <i class="fa fa-close"></i> Delete
-              </a>
+                <div class="<?php echo $status_reserved;?> block-custom-status thumbnail"></div>
+            </td>
+            <td width="120">
+              <a href="<?php echo "homeadmin.php?modul=man_kamar_edit&id=$result[id_kamar]"?>"><i class="fa fa-edit"></i> Edit </a> | 
+              <a href="<?php echo "backend/proses_kamar.php?act=delete_kamar&id=$result[id_kamar]";?>" onclick="return confirm('Delete?');"> <i class="fa fa-close"></i> Delete</a> 
             </td>
           </tr>
         <?php $no++; } ?>

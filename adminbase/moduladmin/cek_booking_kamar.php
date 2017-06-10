@@ -62,8 +62,8 @@
             </form>
             <!-- Menu tabs top -->
             <ul class="nav nav-tabs">
-              <li class="active"><a href="<?php echo 'homeadmin.php?modul=cek_kamar'?>">Aviability - Room</a></li>
-              <li><a href="<?php echo 'homeadmin.php?modul=cek_booking_kamar'?>">Booking - Room</a></li>
+              <li><a href="<?php echo 'homeadmin.php?modul=cek_kamar'?>" style="cursor:pointer;">Aviability - Room</a></li>
+              <li class="active"><a href="<?php echo 'homeadmin.php?modul=cek_booking_kamar'?>" style="cursor:pointer;">Booking - Room</a></li>
             </ul>
             <div class="col pull-right">
                 <h5>Tanggal <?php echo datenow("y-m-d");?>
@@ -92,7 +92,7 @@
                         $get_status_kamar = $result['status_kamar']+2;
                     ?>
                     <div class="font-sizecheck-kamar">
-                            <h5>Tipe Kamar :<strong><?php echo $result['type_kamar']." ( ".$result['jumlah_kamar_akhir']." )";?></strong></h5>
+                            <h5>Tipe Kamar :<strong><?php echo $result['type_kamar']." ( ".$result['jumlah']." )";?></strong></h5>
                     </div><!--font-sizecheck-kamar-->
                     <?php
                         //mendefinisikan status warna kamar

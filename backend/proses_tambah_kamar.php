@@ -23,7 +23,6 @@ $jumlah_request = $_SESSION['session_jumlah_kamar'];
 								JOIN kategori_kamar km ON k.id_kategori_kamar=km.id_kategori_kamar
 								WHERE km.id_kategori_kamar='$_GET[id]' 
 								AND k.status_kamar !='3'
-								AND k.status_kamar='2' 
 								GROUP BY k.id_kategori_kamar ASC");
 	$show_stok_kamar = mysqli_fetch_array($cek_stock_ketetersediaan_kamar);
 	//HITUNG STOK KAMAR
