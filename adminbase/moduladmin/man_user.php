@@ -1,5 +1,4 @@
 <?php include "../fungsi/function_transaksi.php"; ?>
-
 <script type="text/javascript">
     $(document).ready(function() {
       $('.tambah').click(function() {
@@ -65,7 +64,7 @@
           </form>
         </div>
       </div>
-   		<table class="table">
+   		<table class="table table-hover">
    			<thead>
    				<tr>
    					<th>No.</th>
@@ -77,29 +76,22 @@
    			</thead>
    			<tbody>
    				<?php 
-    			$no=1;
-
+    			  $no=1;
    					$query = mysqli_query($konek,"select * from admin order by id_admin");
-
 					while ($result = mysqli_fetch_array($query)) { ?>
 					<tr>
 						<td><?php echo $no;?></td>
 						<td><?php echo $result['username'];?></td>
 						<td><?php echo HakaksesUser($result['level']);?></td>
 						<td><?php echo $result['status'];?></td>
-						<td>
-							<a href="<?php echo "homeadmin.php?modul=man_user_edit&id=$result[id_admin]"?>">
-								<i class="fa fa-edit"></i> Edit
-							</a> | 
-							<a href="<?php echo "backend/proses_man_user.php?act=hapusUser&id=$result[id_admin]";?>" onclick="return confirm('Delete?');">
-								<i class="fa fa-close"></i> Delete
+						<td width="150">
+							  <a href="<?php echo "homeadmin.php?modul=man_user_edit&id=$result[id_admin]"?>"> <i class="fa fa-edit"></i> Edit </a> | 
+                <a href="<?php echo "backend/proses_man_user.php?act=hapusUser&id=$result[id_admin]";?>" onclick="return confirm('Delete?');"><i class="fa fa-close"></i> Delete
 							</a> 
 						</td>
 					</tr>
-				<?php $no++;
-					}
-   				?>
-   			</tbody>
+				<?php $no++; } ?> 
+        </tbody>
    		</table>
    	</div>              
 </div>                

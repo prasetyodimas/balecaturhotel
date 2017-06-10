@@ -5,45 +5,47 @@ include "../fungsi/function_transaksi.php"; ?>
 		<div class="font-sizerheading">
 			<h1 class="page-header">Reservasi Offline / Manajemen Transaksi Check-in</h1>
 		<div class="form-group">
-		<?php 
+		<?php
 			$no=1;
 			$get_transaction = "SELECT b.kd_booking,
 									   m.id_member,
 									   m.nama_lengkap,
 									   m.alamat,
-									   m.kebangsaan, 
+									   m.kebangsaan,
 									   b.checkin,
 									   b.checkout,
 									   b.company_or_other,
 									   b.nama_atasnama,
-									   b.tgl_booking, 
+									   b.tgl_booking,
 									   km.type_kamar,
 									   b.berapa_kamar,
 									   b.total_biayasewa,
 									   b.status_userbook
-		     				    FROM booking b 
+		     				    FROM booking b
 		     				    JOIN member m ON b.id_member=m.id_member
 		     				    JOIN temp_booking tb ON b.id_member=m.id_member
-		     				    JOIN kategori_kamar km ON km.id_kategori_kamar=tb.id_kategori_kamar 
+		     				    JOIN kategori_kamar km ON km.id_kategori_kamar=tb.id_kategori_kamar
 		     				    WHERE kd_booking='$_POST[kode_booking]'";
 			$find_code = mysqli_query($konek,$get_transaction);
 			$hasil     = mysqli_fetch_array($find_code);
-			// validasi checkin masuk 
+			// validasi checkin masuk
 			$jumlah_hari = round((strtotime($hasil['checkout'])-strtotime($hasil['checkin']))/86400);
 			$total_seluruh = 0;
 			$checkout = strtotime($hasil['checkout']);
 			$checkin  = strtotime($hasil['checkin']);
-			if (time() > $checkout) {
+			/*if (time() > $checkout) {
 				echo "<script>alert('Maaf anda terlambat checkin !!')</script>";
 				echo "<script>location='homeadmin.php?modul=man_willbe_checkin'</script>";
 			}
 			if (time() < $checkin) {
 				echo "<script>alert('Maaf anda belum siap untuk checkin, checkin anda pada tanggal ".tgl_indo($hasil['checkin'])." !!')</script>";
 				echo "<script>location='homeadmin.php?modul=man_willbe_checkin'</script>";
-			}
+			}*/
 		?>
 		</div>
-		<form action="backend/proses_checkin_kamar.php?act=choose_room" method="post" enctype="multipart/form-data">
+		<!-- <form action="backend/proses_checkin_kamar.php?act=choose_room" id="myform-array-checkbox" method="post" enctype="multipart/form-data"> -->
+		<form id="myform-array-checkbox" method="post" enctype="multipart/form-data">
+		<input type="text" name="kdbook" value="<?php echo $_POST['kode_booking']; ?>">
 		<h4>Data Ditemukan Sebagai Berikut :</h4>
 		<div class="panel panel-default">
 			<div class="panel-heading">KONFIRMASI CHECKIN</div>
@@ -63,7 +65,7 @@ include "../fungsi/function_transaksi.php"; ?>
 			</div>
 			<div class="panel-heading">DETAIL PEMESANAN :</div>
 			<div class="panel-body">
-				<p>Kode booking <span class="detail-pemesanan-kdbooking">: <?php echo $hasil['kd_booking'];?></span></p>		
+				<p>Kode booking <span class="detail-pemesanan-kdbooking">: <?php echo $hasil['kd_booking'];?></span></p>
 				<p>Checkin <span class="detail-pemesanan-checkin">: <?php echo tgl_indo($hasil['checkin']);?></span></p>
 				<p>Checkout <span class="detail-pemesanan-checkout">: <?php echo tgl_indo($hasil['checkout']);?></span></p>
 				<p>Tanggal pesan <span class="detail-pemesanan-tglpesan">: <?php echo $hasil['tgl_booking'];?></span></p>
@@ -80,16 +82,16 @@ include "../fungsi/function_transaksi.php"; ?>
 			?>
 			<?php if ($hasil['status_userbook']!='BK' || $hasil['status_userbook']!='RF'){?>
 			<div class="panel-body">
-				<p>Cara bayar <span class="information-carabayar">: <?php echo $get_information_payment['cara_bayar'];?></span></p>		
-				<p>Jenis bank <span class="information-jenisbank">: <?php echo $get_information_payment['jenis_bank']; ?></span></p>		
-				<p>Pelunasan <span class="information-pelunasan">: <?php echo $get_information_payment['pelunasan']; ?></span></p>		
-				<p>Jumlah bayar <span class="information-jumlahbayar">: Rp.<?php echo formatuang($get_information_payment['jumlah_bayar']); ?></span></p>		
+				<p>Cara bayar <span class="information-carabayar">: <?php echo $get_information_payment['cara_bayar'];?></span></p>
+				<p>Jenis bank <span class="information-jenisbank">: <?php echo $get_information_payment['jenis_bank']; ?></span></p>
+				<p>Pelunasan <span class="information-pelunasan">: <?php echo $get_information_payment['pelunasan']; ?></span></p>
+				<p>Jumlah bayar <span class="information-jumlahbayar">: Rp.<?php echo formatuang($get_information_payment['jumlah_bayar']); ?></span></p>
 				<?php if ($get_information_payment['pelunasan']=='DP') { ?>
-				<p>Hutang <span class="information-hutang">: Rp.<?php echo formatuang($hutang);?></span></p>		
+				<p>Hutang <span class="information-hutang">: Rp.<?php echo formatuang($hutang);?></span></p>
 				<?php }else{ ?>
 				<?php } ?>
 				<p>Bukti pembayaran <span class="information-buktipembayaran">: <a href="<?php echo $url_pict;?>" data-lightbox="<?php echo $get_information['id_knfrimasi_pmbyaran']?>">
-				<img width="200" height="auto" data-lightbox="<?php echo $get_information['id_knfrimasi_pmbyaran']?>" src="<?php echo $url_pict;?>"></a></span></p>		
+				<img width="200" height="auto" data-lightbox="<?php echo $get_information['id_knfrimasi_pmbyaran']?>" src="<?php echo $url_pict;?>"></a></span></p>
 			</div>
 			<?php }else{ ?>
 				<div style="padding:40px 0px 30px;text-align:center;color: #ff0b0b;">Maaf anda belum melakukan pembayaran !!</div>
@@ -102,12 +104,12 @@ include "../fungsi/function_transaksi.php"; ?>
 		</div>
 		<h4>Check tipe kamar yang dipesan & Acc Kamar :</h4>
 		<div class="row">
-			<div class="col-lg-12" style="margin-bottom:10px;margin-top:20px;">
+			<!-- <div class="col-lg-12" style="margin-bottom:10px;margin-top:20px;">
 				<a href="javascript:;" style="font-size:15px;color:#DD4814;" class="tambah-no-kamar">+ Klik disini untuk Acc no kamar</a>
-			</div>
+			</div> -->
 		</div>
 		<div class="table-responsive">
-			<table class="table table-hover">
+			<table class="table" id="table-room">
 				<thead>
 					<tr>
 						<th>Tipe kamar</th>
@@ -121,14 +123,14 @@ include "../fungsi/function_transaksi.php"; ?>
 					</tr>
 				</thead>
 				<?php
-					$get_trans_booking = mysqli_query($konek,"SELECT 
-                                                         b.kd_booking, 
-                                                         m.id_member, 
+					$get_trans_booking = mysqli_query($konek,"SELECT
+                                                         b.kd_booking,
+                                                         m.id_member,
                                                          km.type_kamar,
-                                                         km.id_kategori_kamar, 
-                                                         km.tarif, 
+                                                         km.id_kategori_kamar,
+                                                         km.tarif,
                                                          b.berapa_kamar
-                                                         FROM temp_booking tb 
+                                                         FROM temp_booking tb
                                                          JOIN member m ON tb.id_member=m.id_member
                                                          JOIN booking b ON b.id_member=m.id_member
                                                          JOIN kategori_kamar km ON tb.id_kategori_kamar=km.id_kategori_kamar
@@ -145,7 +147,7 @@ include "../fungsi/function_transaksi.php"; ?>
 					$y  		    = $getdiskon['id_kategori_kamar'];
 					$available_disc = $getdiskon['besar_diskon'];
 					//variable percent 10%
-					$percent = (($price_room*10)/100); 
+					$percent = (($price_room*10)/100);
 					//variable discount
 					$discount =(($price_room*$available_disc)/100);
 					//tentukan perhitungan harga kamar + pajak
@@ -160,51 +162,20 @@ include "../fungsi/function_transaksi.php"; ?>
 						<td><?php if($x==$y){echo $available_disc; }else{echo " - "; } ?></td>
 						<td>Rp.<?php echo formatuang($price_room+$percent+$discount);?></td>
 						<td>Rp.<?php echo formatuang($count_total_price_and_tax);?></td>
-						<td>
-							<?php if ($result['berapa_kamar']==1) { ?>
-								<select id="validation-select" name="id_kamar[]" style="cursor:pointer;">
-									<?php
-										$getno_kamar = mysqli_query($konek,"SELECT * FROM 
-																			kamar 
-																			WHERE status_kamar!='3' 
-																			AND id_kategori_kamar='$kategori_kamar' 
-																			ORDER BY RAND()");
-										while ($res_no_room = mysqli_fetch_array($getno_kamar)) {
-											echo "<option value='".$res_no_room['id_kamar']."'>".$res_no_room['id_kamar']."</option>";
-										}
-									 ?>
-								</select>
-							<?php }else{ ?>
-							<?php }?>
+						<td class="col-md-1">
+							<?php
+								$getno_kamar = mysqli_query($konek,"SELECT * FROM kamar
+																	WHERE status_kamar!='3'
+																	AND id_kategori_kamar='$kategori_kamar'
+																	");
+								while ($res_no_room = mysqli_fetch_array($getno_kamar)) {
+									echo "<input type='checkbox' name='array_nokamar' id='kamar_aray' style='cursor:pointer;' value='".$res_no_room['id_kamar']."'>". $res_no_room['id_kamar'] ."</radio>";
+								}
+							 ?>
 							<div id="add_room_again"></div>
 						</td>
 					</tr>
 				</tbody>
-				<input type="hidden" name="kode_book" value="<?php echo $hasil['kd_booking'];?>">
-				<input type="hidden" id="room_reQ" name="room_request" value="<?php echo $result['berapa_kamar'];?>">
-				<!-- clone form no kamar -->
-				<div style="display:none;" class="no_kamar">
-					<div class="hidding" id="adding-formselect">
-						<select id="validation-select" name="id_kamar[]" style="cursor:pointer;">
-							<?php
-								$getno_kamar = mysqli_query($konek,"SELECT * FROM 
-																	kamar 
-																	WHERE status_kamar!='3' 
-																	AND id_kategori_kamar='$kategori_kamar' 
-																	ORDER BY RAND()");
-								while ($res_no_room = mysqli_fetch_array($getno_kamar)) {
-									echo "<option value='".$res_no_room['id_kamar']."'>".$res_no_room['id_kamar']."</option>";
-								}
-							 ?>
-						</select>
-					</div>
-				</div>
-				<!-- clone category no kamar -->
-				<div style="display:none" class="room_category">
-					<div class="hidding-roomcategory">
-						<input type="hidden" name="cate_room[]" value="<?php echo $kategori_kamar;?>">
-					</div>
-				</div>
 				<?php } ?>
 			</table>
 		</div><!--table-responsive-->
@@ -212,14 +183,14 @@ include "../fungsi/function_transaksi.php"; ?>
 			<button class="btn btn-primary">Checkin Sekarang</button>
 			<a class="btn btn-warning" href="homeadmin.php?modul=man_willbe_checkin">Cancel</a>
 		</div>
-		<!-- </form> -->
+		</form>
 		<!-- ==== jika data nya yang dicari tidak ditemukan ===-->
-		<?php
+		<!-- <?php
 		if (mysqli_num_rows($find_code)==0) {
 				echo "<script>alert('Maaf data yang anda cari tidak ditemukan !!')</script>";
 				echo "<script>history.go(-1)</script>";
 			}
-		?>
+		?> -->
 	</div>
 	<div class="clearfix-bottom-100"></div>
 </div>
@@ -232,6 +203,7 @@ include "../fungsi/function_transaksi.php"; ?>
 	$(document).ready(function(){
 		var request_room_user = $('#room_reQ').val();
 		var room_default = 1;
+		var id_cate_room;
 		$('.tambah-no-kamar').click(function(e) {
 			e.preventDefault();
 			var new_nokamar = $('.no_kamar div.hidding').clone();
@@ -243,8 +215,8 @@ include "../fungsi/function_transaksi.php"; ?>
 				$('#add_room_again').append(cate_room);
 			}
 			//user click on remove text
-			$('.removed').click(function(e){ 
-	        	e.preventDefault(); 
+			$('.removed').click(function(e){
+	        	e.preventDefault();
 	        	$(this).parent().remove();
 	    	});
 		});
@@ -252,15 +224,69 @@ include "../fungsi/function_transaksi.php"; ?>
 		$("select").on('focus', function () {
 	    	previous = this.value;
 	    	var x = $(this).attr('#validation-select');
-	    	console.log(x);
+	    	//console.log(x);
 	    }).change(function() {
 	    	//var change_val = $("select[value="+$(this).val()+"]").not(this).val(previous);
 	    	var change_val = $("").not(this).val(previous);
-	    	console.log(change_val);
+	    	//console.log(change_val);
 	    });
 	});
-	//adding class when window load 
+	//adding class when window load
 	$(window).load(function(){
 		$('#adding-formselect').addClass('show-content');
 	});
+	//serialize array checxbox
+	var array_data_kamar = [];
+	$(document).on('click','#kamar_aray',function(){
+		var nilai_room = $(this).val();
+		//console.log(nilai_room);
+		if ($(this).is(':checked')) {
+			array_data_kamar.push($(this).val());
+		}else{
+			var index = array_data_kamar.indexOf(nilai_room);
+			if(index >= 0){
+				array_data_kamar.splice(index,1);
+			}
+		}
+		//console.log(array_data_kamar);
+	});
+	//serialize array checxbox
+	var array_category_kamar = [];
+	$('#table-room tr').click(function(){
+		var data_cate_room = $(this).find('td').eq(0).html();
+		//console.log(data_cate_room);
+		if ($(this).is(':checked')) {
+			data_cate_room.push($(this).val());
+		}else{
+			var index_cate_room = array_category_kamar.indexOf(data_cate_room);
+			if (index_cate_room >= 0) {
+				array_category_kamar.splice(index_cate_room,1);
+			}
+
+		}
+		//console.log(data_cate_room);
+	});
+
+	$('#myform-array-checkbox').submit(function(e){
+		e.preventDefault();
+		var category_kamar = '<?php echo $kategori_kamar;?>';
+		//array_data_kamar.push($(this).val());
+		//array_category_kamar.push($(this).val());
+		//console.log(array_category_kamar);
+		//console.log(array_data_kamar);
+		$.ajax({
+	    	type : 'POST',
+	    	url  : 'backend/proses_checkin_kamar.php?act=choose_room',
+	    	data : {'id_kamar':array_data_kamar,'kd_booking':<?php echo "'".$_POST['kode_booking']."'"?>,'id_kategori_kamar':category_kamar},
+		 	succes:function(data, response, textStatus, jqXHR) {
+				if (!data.success) { //If fails
+	                if (data.errors.name) { //Returned if any error from process.php
+	                    $('.throw_error').fadeIn(1000).html(data.errors.name); //Throw relevant error
+	                }
+	            }else{
+	                $('#success').fadeIn(1000).append('<p>' + data.posted + '</p>'); //If successful, than throw a success message
+	            }
+        }
+	});
+});
 </script>
