@@ -60,7 +60,7 @@ if ($act=='update_member') {
 										   no_telp 			='$_POST[no_telp]',
 										   foto 			='$nama_file_unik_foto_member' 
 										   WHERE id_member  ='$_GET[id]'";
-		echo $update_member;
+		//echo $update_member;
 		$sucess =mysqli_query($konek,$update_member);
 		if ($sucess) {
 			echo "<script>alert('data berhasil di update !!');</script>";
