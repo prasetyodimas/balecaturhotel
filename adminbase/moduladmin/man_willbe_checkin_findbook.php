@@ -248,7 +248,7 @@ include "../fungsi/function_transaksi.php"; ?>
 				array_data_kamar.splice(index,1);
 			}
 		}
-		//console.log(array_data_kamar);
+		console.log(array_data_kamar);
 	});
 	//serialize array checxbox
 	var array_category_kamar = [];
@@ -264,29 +264,32 @@ include "../fungsi/function_transaksi.php"; ?>
 			}
 
 		}
-		//console.log(data_cate_room);
+		console.log(data_cate_room);
 	});
 
 	$('#myform-array-checkbox').submit(function(e){
 		e.preventDefault();
 		var category_kamar = '<?php echo $kategori_kamar;?>';
-		//array_data_kamar.push($(this).val());
-		//array_category_kamar.push($(this).val());
-		//console.log(array_category_kamar);
-		//console.log(array_data_kamar);
+		// array_data_kamar.push($(this).val());
+		// array_category_kamar.push($(this).val());
+		// console.log(array_category_kamar);
+		// console.log(array_data_kamar);
 		$.ajax({
 	    	type : 'POST',
 	    	url  : 'backend/proses_checkin_kamar.php?act=choose_room',
 	    	data : {'id_kamar':array_data_kamar,'kd_booking':<?php echo "'".$_POST['kode_booking']."'"?>,'id_kategori_kamar':category_kamar},
-		 	succes:function(data, response, textStatus, jqXHR) {
-				if (!data.success) { //If fails
-	                if (data.errors.name) { //Returned if any error from process.php
-	                    $('.throw_error').fadeIn(1000).html(data.errors.name); //Throw relevant error
-	                }
-	            }else{
-	                $('#success').fadeIn(1000).append('<p>' + data.posted + '</p>'); //If successful, than throw a success message
-	            }
-        }
+				succes:function(data, response) {
+					window.location.href = "admin.php";
+						// console.log(data);
+				// if (data.success) { //If fails
+				//     if (data.errors.name) { //Returned if any error from process.php
+				//         $('.throw_error').fadeIn(1000).html(data.errors.name); //Throw relevant error
+				//     }
+				// }else{
+				//     $('#success').fadeIn(1000).append('<p>' + data.posted + '</p>'); //If successful, than throw a success message
+				// }
+        },
 	});
+
 });
 </script>
