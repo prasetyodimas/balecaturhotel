@@ -1,5 +1,5 @@
 
-# Descrption
+# Balecatur Inn
 balecatur inn is a hotel in yogyakarta this application is made to handle transaction recording problem and management of room availability
 
 ## Project
