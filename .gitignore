@@ -1,2 +1,7 @@
-uploads/*
-config/*
+uploads/blank_user/*
+uploads/bukti/*
+uploads/gallery/*
+uploads/kamar/*
+uploads/rental/*
+uploads/user/*
+config/koneksi.php
