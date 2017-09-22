@@ -8,12 +8,12 @@
 	//tampilkan transaksi layanan
 	$get_trans_other = mysqli_fetch_array(mysqli_query($konek,"SELECT * FROM transaksi_layanan WHERE kd_booking='$_GET[id]'"));
 	$databooking = mysqli_fetch_array(mysqli_query($konek,
-	"SELECT b.kd_booking, m.id_member, m.nama_lengkap, b.tgl_booking, b.checkin, b.checkout, b.nama_atasnama, b.company_or_other, b.status_userbook ,b.layanan_extra, b.total_biayasewa 
+	"SELECT b.kd_booking, m.id_member, m.nama_lengkap, b.tgl_booking, b.checkin, b.checkout, b.nama_atasnama, b.company_or_other, b.status_userbook ,b.layanan_extra, b.total_biayasewa
 	FROM member m JOIN booking b ON b.id_member=m.id_member
 	WHERE b.kd_booking='$_GET[id]'"));
 	$total_transaksi=$databooking['total_biayasewa'];
 	//mendifinisikan jarak waktu checkin + checkout = jumlah menginap berapa hari
-	$jumlah_hari = round((strtotime($databooking['checkout'])-strtotime($databooking['checkin']))/86400); 
+	$jumlah_hari = round((strtotime($databooking['checkout'])-strtotime($databooking['checkin']))/86400);
 	//status konfrimasi button
 	if ($databooking['status_userbook']=='BK') {
 		$showaction ='action-disable';
@@ -40,22 +40,22 @@
 	});
 </script>
 <style type="text/css">
-	.detil-transaction .man-kdbook{margin-left: 200px; } 
-	.detil-transaction .man-idmember{margin-left: 220px; } 
-	.detil-transaction .man-namapemesan{margin-left: 187px; } 
-	.detil-transaction .man-tipekamar{margin-left: 217px; } 
-	.detil-transaction .man-hargakamar{margin-left: 205px; } 
-	.detil-transaction .man-tanggal_pemesan{margin-left: 196px; } 
-	.detil-transaction .man-checkin{margin-left: 239px; } 
-	.detil-transaction .man-checkout{margin-left: 231px; } 
-	.detil-transaction .man-checkout{margin-left: 231px; } 
-	.detil-transaction .man-totalmenginap{margin-left: 194px; } 
-	.detil-transaction .man-nokamar{margin-left: 228px; } 
-	.detil-transaction .man-umlahorang{margin-left: 206px; } 
+	.detil-transaction .man-kdbook{margin-left: 200px; }
+	.detil-transaction .man-idmember{margin-left: 220px; }
+	.detil-transaction .man-namapemesan{margin-left: 187px; }
+	.detil-transaction .man-tipekamar{margin-left: 217px; }
+	.detil-transaction .man-hargakamar{margin-left: 205px; }
+	.detil-transaction .man-tanggal_pemesan{margin-left: 196px; }
+	.detil-transaction .man-checkin{margin-left: 239px; }
+	.detil-transaction .man-checkout{margin-left: 231px; }
+	.detil-transaction .man-checkout{margin-left: 231px; }
+	.detil-transaction .man-totalmenginap{margin-left: 194px; }
+	.detil-transaction .man-nokamar{margin-left: 228px; }
+	.detil-transaction .man-umlahorang{margin-left: 206px; }
 	.detil-transaction .man-statususerbook{margin-left: 225px;}
 	.detil-transaction .man-nama_atasnama{margin-left: 183px;}
     .detil-transaction .man-company_or_other{margin-left: 122px;}
-	.pembayaran-transaksi .man-carabayar{margin-left: 225px; } 
+	.pembayaran-transaksi .man-carabayar{margin-left: 225px; }
 	.pembayaran-transaksi .man-jenispelunasan{margin-left: 193px;}
 	.pembayaran-transaksi .man-jenisbank{margin-left: 225px;}
 	.pembayaran-transaksi .man-totalbayar{margin-left: 223px;}
@@ -128,8 +128,8 @@
 							<th>Subtotal Harga / kamar x hari</th>
 						</tr>
 					</thead>
-					<?php 
-						$get_trans_room = mysqli_query($konek,"SELECT * FROM booking b 
+					<?php
+						$get_trans_room = mysqli_query($konek,"SELECT * FROM booking b
 						JOIN detail_booking_kamar dbk ON dbk.kd_booking=b.kd_booking
 						JOIN kategori_kamar km ON dbk.id_kategori_kamar=km.id_kategori_kamar
 						WHERE b.kd_booking='$_GET[id]'");
@@ -147,7 +147,7 @@
 						$y  		    = $getdiskon['id_kategori_kamar'];
 						$available_disc = $getdiskon['besar_diskon'];
 						//variable percent 10%
-						$percent = (($price_room*10)/100); 
+						$percent = (($price_room*10)/100);
 						//variable discount
 						$discount =(($price_room*$available_disc)/100);
 					?>
@@ -162,8 +162,8 @@
 							<td>Rp.<?php echo formatuang(($price_room+$percent-$discount)*$jumlah_hari);?></td>
 						</tr>
 					</tbody>
-					<input type="hidden" name="category_room[]" value="<?php echo $result_room['id_kategori_kamar'];?>">
-					<input type="hidden" name="no_room_category[]" value="<?php echo $result_room['id_kamar'];?>">
+					<input type="text" name="category_room[]" value="<?php echo $result_room['id_kategori_kamar'];?>">
+					<input type="text" name="no_room_category[]" value="<?php echo $result_room['id_kamar'];?>">
 					<?php } ?>
 				</table>
 			</div>
@@ -221,7 +221,7 @@
 					<?php if ($databooking['layanan_extra']=='Tidak') { ?>
 						<p style="text-align:center;">Tidak ada transaksi tambahan</p>
 					<?php }elseif ($databooking['layanan_extra']=='Ya') { ?>
-					 <?php $gettransaksi_extra = mysqli_fetch_array(mysqli_query($konek,"SELECT tl.kd_booking, tl.id_rental, r.kate_kendaraan, r.nama_kendaraan, r.harga_kendaraan, dbr.tgl_awal_sewa, dbr.tgl_akhir_sewa 
+					 <?php $gettransaksi_extra = mysqli_fetch_array(mysqli_query($konek,"SELECT tl.kd_booking, tl.id_rental, r.kate_kendaraan, r.nama_kendaraan, r.harga_kendaraan, dbr.tgl_awal_sewa, dbr.tgl_akhir_sewa
                   			FROM transaksi_layanan tl JOIN rental r ON tl.id_rental=r.id_rental
                   			JOIN detail_booking_rental dbr ON tl.id_rental=dbr.id_rental WHERE tl.kd_booking='$_GET[id]'")); ?>
 					<?php if ($get_trans_other['id_rental']!=0) { ?>
@@ -242,7 +242,7 @@
 					<?php }elseif ($get_trans_other['id_rental']==0) {?>
 					<?php } ?>
 					<?php if ($get_trans_other['id_extrabed']!=0){?>
-						<?php $gettransaksi_extra = mysqli_fetch_array(mysqli_query($konek,"SELECT tl.kd_booking, tl.id_extrabed, e.harga_extrabed 
+						<?php $gettransaksi_extra = mysqli_fetch_array(mysqli_query($konek,"SELECT tl.kd_booking, tl.id_extrabed, e.harga_extrabed
 											    FROM transaksi_layanan tl JOIN extrabed e ON tl.id_extrabed=e.id_extrabed WHERE tl.kd_booking='$_GET[id]'")); ?>
 						<div class="form-group">
 							<label>Extrabed</label>
@@ -253,7 +253,7 @@
 						<?php }elseif ($get_trans_other['id_extrabed']==0) { ?>
 						<?php } ?>
 					<?php if($get_trans_other['id_paket']!=0) { ?>
-					<?php $gettransaksi_extra = mysqli_fetch_array(mysqli_query($konek,"SELECT tl.kd_booking, tl.id_paket, p.nama_paket, p.harga_paket, dp.keterangan_menunya 
+					<?php $gettransaksi_extra = mysqli_fetch_array(mysqli_query($konek,"SELECT tl.kd_booking, tl.id_paket, p.nama_paket, p.harga_paket, dp.keterangan_menunya
 					                     FROM transaksi_layanan tl JOIN paket p ON tl.id_paket=p.id_paket
 					                     JOIN detail_paket dp ON p.id_paket=dp.id_paket WHERE tl.kd_booking='$_GET[id]'"));?>
 					  <div class="form-group">
@@ -271,7 +271,7 @@
 					<?php }elseif ($get_trans_other['id_extrabed']==0) { ?>
 					<?php } ?>
 					<?php if ($get_trans_other['id_laundry']!=0) { ?>
-					<?php $gettransaksi_extra = mysqli_fetch_array(mysqli_query($konek,"SELECT tl.kd_booking, tl.id_laundry, l.jenis_laundry, l.harga_laundry, l.ket_laundry 
+					<?php $gettransaksi_extra = mysqli_fetch_array(mysqli_query($konek,"SELECT tl.kd_booking, tl.id_laundry, l.jenis_laundry, l.harga_laundry, l.ket_laundry
 					         FROM transaksi_layanan tl JOIN laundry l ON tl.id_laundry=l.id_laundry WHERE tl.kd_booking='$_GET[id]'"));?>
 					  <div class="form-group">
 					     <label>Laundry</label>
@@ -309,6 +309,3 @@
 		<div class="clearfix-bottom-100"></div>
 	</div>
 </div>
-
-
-

@@ -15,7 +15,7 @@
         $('[data-toggle="tooltip"]').tooltip({
             placement : 'top'
         });
-    });    
+    });
     //set timezone real time waktu
     <?php date_default_timezone_set('Asia/Jakarta'); ?>
     //buat object date berdasarkan waktu di server
@@ -44,7 +44,7 @@
     .title-postion-checkroom{
         position: absolute;
         top: 0px;
-        left: 70px; 
+        left: 70px;
     }
 </style>
 <body onload="setInterval('displayServerTime()', 1000);">
@@ -73,19 +73,23 @@
                 <div class="col-lg-12">
                     <?php
                         //get type kamar
-                        $cekkate_kamar = mysqli_query($konek, 
-                            "SELECT tb.id_tempbooking, 
+                        $cekkate_kamar = mysqli_query($konek,
+                            "SELECT tb.id_tempbooking,
+																		m.nama_lengkap,
                                     tb.jumlah,
+																		b.kd_booking,
                                     tb.id_member,
                                     tb.id_kategori_kamar,
                                     tb.temp_checkin,
-                                    tb.temp_checkout, 
-                                    km.type_kamar, 
-                                    km.jumlah_kamar_akhir, 
-                                    k.status_kamar 
-                                FROM temp_booking tb 
+                                    tb.temp_checkout,
+                                    km.type_kamar,
+                                    km.jumlah_kamar_akhir,
+                                    k.status_kamar
+                                FROM temp_booking tb
                                 JOIN kategori_kamar km ON tb.id_kategori_kamar=km.id_kategori_kamar
                                 JOIN kamar k ON km.id_kategori_kamar=k.id_kategori_kamar
+																JOIN member m ON tb.id_member=m.id_member
+																JOIN booking b ON m.id_member=b.id_member
                                 GROUP BY km.id_kategori_kamar");
                         while ($result = mysqli_fetch_array($cekkate_kamar)) {
                         $get_data_member = mysqli_fetch_array(mysqli_query($konek,"SELECT * FROM member WHERE id_member='$result[id_member]'"));
@@ -113,7 +117,7 @@
                         <div class='col-xs-6 col-md-2' style='text-align:center;'>
                             <a href='#' class='<?php echo $status_reserved;?> thumbnail' data-toggle="tooltip" title="Dipesan oleh <?php echo $get_data_member['nama_lengkap'].
                             ' Tgl Checkin-checkout '.tgl_indo($result['temp_checkin']).' S/d '. tgl_indo($result['temp_checkout']);?>">
-                            <?php echo $result['id_member'];?></a>
+                            <h6><?php echo $result['id_member']." + ".$result['kd_booking'].'</br>'. $result['nama_lengkap'];?></h6></a>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -122,7 +126,7 @@
                     </div>
                     <?php } ?>
                 </div>
-                
+
             </div>
             <div class="clearfix" style="margin-top:5%;"></div>
             <div class="wrapper-statuskamar">

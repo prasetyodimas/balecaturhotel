@@ -12,7 +12,7 @@
                     cek_kamar:"kolom tanggal tidak boleh kosong !!",
                 }
         });
-    });    
+    });
     //set timezone real time waktu
     <?php date_default_timezone_set('Asia/Jakarta'); ?>
     //buat object date berdasarkan waktu di server
@@ -41,7 +41,7 @@
     .title-postion-checkroom{
         position: absolute;
         top: 0px;
-        left: 70px; 
+        left: 70px;
     }
 </style>
 <body onload="setInterval('displayServerTime()', 1000);">
@@ -78,34 +78,36 @@
                     </div><!--font-sizecheck-kamar-->
                     <?php
                         $getkamar1  = mysqli_query($konek,"SELECT * FROM kamar WHERE id_kategori_kamar='$tipekmarnya[id_kategori_kamar]'");
-                        while ($kamartersedia1=mysqli_fetch_array($getkamar1)) {
+                        while ($roomStatus=mysqli_fetch_array($getkamar1)) {
                         //cek status kamarnya
-                        $get_status = mysqli_fetch_array(mysqli_query($konek,"SELECT status_kamar 
-                                                                         FROM kamar WHERE id_kategori_kamar='$kamartersedia1[id_kategori_kamar]'"));
-                        $get_status_booking = mysqli_fetch_array(mysqli_query($konek,"SELECT * FROM booking b JOIN detail_booking_kamar dbk ON b.kd_booking=dbk.kd_booking 
-                                                                         WHERE dbk.id_kategori_kamar='$kamartersedia1[id_kategori_kamar]'"));
+                        $get_status = mysqli_fetch_array(mysqli_query($konek,"SELECT status_kamar
+                                                                         			FROM kamar WHERE id_kategori_kamar='$roomStatus[id_kategori_kamar]'"));
+                        $get_status_booking = mysqli_fetch_array(mysqli_query($konek,
+																																							"SELECT * FROM booking b
+																																							 JOIN detail_booking_kamar dbk ON b.kd_booking=dbk.kd_booking
+                                                                         			 WHERE dbk.id_kategori_kamar='$roomStatus[id_kategori_kamar]'"));
                         //mendefinisikan status warna kamar
-                        if ($kamartersedia1['status_kamar']=='0') {
+                        if ($roomStatus['status_kamar']=='0') {
                             $status_reserved ='coloring-thumbnail-grey';
-                        }elseif ($kamartersedia1['status_kamar']=='1'){
+                        }elseif ($roomStatus['status_kamar']=='1'){
                             $status_reserved ='coloring-thumbnail-orange';
-                        }elseif($kamartersedia1['status_kamar']=='2'){
+                        }elseif($roomStatus['status_kamar']=='2'){
                             $status_reserved ='coloring-thumbnail-green';
-                        }elseif ($kamartersedia1['status_kamar']=='3'){
+                        }elseif ($roomStatus['status_kamar']=='3'){
                             $status_reserved ='coloring-thumbnail-red';
-                        }elseif ($kamartersedia1['status_kamar']=='4'){
+                        }elseif ($roomStatus['status_kamar']=='4'){
                             $status_reserved = 'coloring-thumbnail-yellow';
                         }
                     ?>
                     <!-- show color all room and type !!-->
                     <div class="block-barstatus">
                         <div class='col-xs-6 col-md-2' style='text-align:center;'>
-                            <a href='#' class='<?php echo $status_reserved;?> thumbnail'><?php echo $kamartersedia1['id_kamar'];?></a>
+                            <a href='#' class='<?php echo $status_reserved;?> thumbnail'><?php echo $roomStatus['id_kamar'];?></a>
                         </div>
                     </div>
                     <?php } }  ?>
                 </div>
-                
+
             </div>
             <div class="clearfix" style="margin-top:5%;"></div>
             <div class="wrapper-statuskamar">

@@ -45,7 +45,7 @@ include "../fungsi/function_transaksi.php"; ?>
 		</div>
 		<!-- <form action="backend/proses_checkin_kamar.php?act=choose_room" id="myform-array-checkbox" method="post" enctype="multipart/form-data"> -->
 		<form id="myform-array-checkbox" method="post" enctype="multipart/form-data">
-		<input type="text" name="kdbook" value="<?php echo $_POST['kode_booking']; ?>">
+		<input type="hidden" name="kdbook" value="<?php echo $_POST['kode_booking']; ?>">
 		<h4>Data Ditemukan Sebagai Berikut :</h4>
 		<div class="panel panel-default">
 			<div class="panel-heading">KONFIRMASI CHECKIN</div>
@@ -166,8 +166,7 @@ include "../fungsi/function_transaksi.php"; ?>
 							<?php
 								$getno_kamar = mysqli_query($konek,"SELECT * FROM kamar
 																	WHERE status_kamar!='3'
-																	AND id_kategori_kamar='$kategori_kamar'
-																	");
+																	AND id_kategori_kamar='$kategori_kamar'");
 								while ($res_no_room = mysqli_fetch_array($getno_kamar)) {
 									echo "<input type='checkbox' name='array_nokamar' id='kamar_aray' style='cursor:pointer;' value='".$res_no_room['id_kamar']."'>". $res_no_room['id_kamar'] ."</radio>";
 								}
@@ -248,7 +247,7 @@ include "../fungsi/function_transaksi.php"; ?>
 				array_data_kamar.splice(index,1);
 			}
 		}
-		console.log(array_data_kamar);
+		// console.log(array_data_kamar);
 	});
 	//serialize array checxbox
 	var array_category_kamar = [];
@@ -264,7 +263,7 @@ include "../fungsi/function_transaksi.php"; ?>
 			}
 
 		}
-		console.log(data_cate_room);
+		// console.log(data_cate_room);
 	});
 
 	$('#myform-array-checkbox').submit(function(e){
@@ -278,18 +277,11 @@ include "../fungsi/function_transaksi.php"; ?>
 	    	type : 'POST',
 	    	url  : 'backend/proses_checkin_kamar.php?act=choose_room',
 	    	data : {'id_kamar':array_data_kamar,'kd_booking':<?php echo "'".$_POST['kode_booking']."'"?>,'id_kategori_kamar':category_kamar},
-				succes:function(data, response) {
-					window.location.href = "admin.php";
-						// console.log(data);
-				// if (data.success) { //If fails
-				//     if (data.errors.name) { //Returned if any error from process.php
-				//         $('.throw_error').fadeIn(1000).html(data.errors.name); //Throw relevant error
-				//     }
-				// }else{
-				//     $('#success').fadeIn(1000).append('<p>' + data.posted + '</p>'); //If successful, than throw a success message
-				// }
-        },
+				success:function(data) {
+					if (data) {
+							window.location.href='http://localhost/balecaturhotel/adminbase/homeadmin.php?modul=man_willbe_checkin';
+					}
+				}
 	});
-
 });
 </script>
