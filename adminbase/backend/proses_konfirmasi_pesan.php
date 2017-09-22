@@ -21,25 +21,30 @@ if($act=="update_konfirmasi_pesan") {
 }
 //hapus konfirmasi pesan
 elseif ($act =="hapus_reserveonline") {
-  //show jumlah pemesanan kamar 
-  $get_booking = mysqli_fetch_array(mysqli_query($konek,"SELECT * FROM booking b 
+  //show jumlah pemesanan kamar
+  $get_booking = mysqli_fetch_array(mysqli_query($konek,"SELECT * FROM booking b
                                                         JOIN temp_booking tb ON tb.id_member=b.id_member
                                                         JOIN kategori_kamar km ON km.id_kategori_kamar=tb.id_kategori_kamar
-                                                         WHERE b.kd_booking='$_GET[id]'"));
-  $delete_konfirmasi = "DELETE b, tb FROM booking b 
+                                                        WHERE b.kd_booking='$_GET[id]'"));
+  //FUNCTION DELETE TEMP AND BOOKING DATA
+  $delete_konfirmasi = "DELETE b, tb FROM booking b
                         INNER JOIN temp_booking tb
                         WHERE b.kd_booking='$_GET[id]'";
   $konfimasi_query = mysqli_query($konek,$delete_konfirmasi);
 
-  //var restoring booking 
+  //FUNCTION RESTORING STOCK ROOM
   $permintaan = $get_booking['berapa_kamar'];
   $sisa_stock = $get_booking['jumlah_kamar_akhir'];
   $update_stock_baru = ($sisa_stock+$permintaan);
-  $restoring_stock_room = "UPDATE kategori_kamar 
-                           SET jumlah_kamar_akhir='$update_stock_baru' 
+  $restoring_stock_room = "UPDATE kategori_kamar
+                           SET jumlah_kamar_akhir='$update_stock_baru'
                            WHERE id_kategori_kamar='$get_booking[id_kategori_kamar]'";
   $update_status_book = mysqli_query($konek,$restoring_stock_room);
-  if ($konfimasi_query && $update_status_book) {
+
+  //FUNCTION UPDATE STATUS ROOM
+  $roomStatus = "UPDATE kamar SET status_kamar='2' WHERE id_kategori_kamar='$get_booking[id_kategori_kamar]' AND status_kamar='4'";
+  $succesSavedStatus = mysqli_query($konek,$roomStatus);
+  if ($konfimasi_query && $update_status_book && $succesSavedStatus) {
       echo "<script>alert('Konfirmasi pemesanan berhasil di hapus !!')</script>";
       echo "<meta http-equiv=refresh content=0;url=$site"."adminbase/homeadmin.php?modul=man_reserveonline>";
   }else{

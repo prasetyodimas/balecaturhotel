@@ -28,7 +28,7 @@ $jumlah_request = $_SESSION['session_jumlah_kamar'];
 	$stok_kamar 						= $show_stok_kamar['jumlah_kamar'];
 	$pengurangan_stok_kamar = ($stok_kamar-$jumlah_request);
 	//FUNCTION STOK KAMAR
-	$execute = "UPDATE kategori_kamar SET jumlah_kamar_akhir=$pengurangan_stok_kamar";
+	$execute = "UPDATE kategori_kamar SET jumlah_kamar_akhir=$pengurangan_stok_kamar WHERE id_kategori_kamar='$_GET[id]'";
 	$succesSaved = mysqli_query($konek,$execute);
 	//FUNCTION UPDATE STATUS KAMAR
 	$updateRoomToBooked = "UPDATE kamar SET status_kamar='4' WHERE id_kategori_kamar='$_GET[id]' LIMIT $jumlah_request";
