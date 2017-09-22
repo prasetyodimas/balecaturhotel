@@ -1,12 +1,14 @@
-## About
+![alt text](https://raw.githubusercontent.com/username/projectname/branch/path/to/img.png)
 
-At the top of the file there should be a short introduction and/ or overview that explains **what** the project is. This description should match descriptions added for package managers (Gemspec, package.json, etc.)
+## Descrption
+balecatur inn is a hotel in yogyakarta this application is made to handle transaction recording problem and management of room availability
 
 ## Project
-
 this is my final project in my degree
 
 ## Contributors
+Dimas Prasetyo  
+Reza Fauzan Ramadhan
 
 ## License
  MIT
