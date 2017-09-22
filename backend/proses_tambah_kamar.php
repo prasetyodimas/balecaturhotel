@@ -3,12 +3,11 @@ date_default_timezone_set('Asia/Jakarta');
 include '../config/koneksi.php';
 $act 		    		= $_GET['act'];
 $s_id           = session_id();
-//$var_date_now   = date('Y-m-d H:i:s');
 $tem_checkin 	  = $_SESSION['session_checkin'];
 $tem_checkout 	= $_SESSION['session_checkout'];
 $id_usermember  = $_SESSION['id_member'];
 $jumlah_request = $_SESSION['session_jumlah_kamar'];
-
+	// FUNCTION CHCEK ROW BOOKING ITEMS
 	$show_data_temp = mysqli_query($konek,"SELECT * FROM temp_booking WHERE id_kategori_kamar='$_GET[id]' AND session='$s_id'");
 	$cek_row_temp   = mysqli_num_rows($show_data_temp);
 	$cek_stock_ketetersediaan_kamar = mysqli_query($konek,
@@ -28,14 +27,13 @@ $jumlah_request = $_SESSION['session_jumlah_kamar'];
 	//HITUNG STOK KAMAR
 	$stok_kamar 						= $show_stok_kamar['jumlah_kamar'];
 	$pengurangan_stok_kamar = ($stok_kamar-$jumlah_request);
-	$update_room_to_book_status =
-									"UPDATE kamar k
-								   JOIN kategori_kamar km ON k.id_kategori_kamar=km.id_kategori_kamar
-								   SET km.jumlah_kamar_akhir='$pengurangan_stok_kamar', k.status_kamar='4'
-								   WHERE km.id_kategori_kamar='$_GET[id]'
-								   AND k.status_kamar='4'";
-									 echo $update_room_to_book_status;
-	$update_saved = mysqli_query($konek,$update_room_to_book_status);
+	//FUNCTION STOK KAMAR
+	$execute = "UPDATE kategori_kamar SET jumlah_kamar_akhir=$pengurangan_stok_kamar";
+	$succesSaved = mysqli_query($konek,$execute);
+	//FUNCTION UPDATE STATUS KAMAR
+	$updateRoomToBooked = "UPDATE kamar SET status_kamar='4' WHERE id_kategori_kamar='$_GET[id]' LIMIT $jumlah_request";
+	$succesSavedStatus	= mysqli_query($konek,$updateRoomToBooked);
+
 	$insert_to_temp = "INSERT INTO temp_booking (id_kategori_kamar,
 																							 jumlah,
 																							 temp_checkin,

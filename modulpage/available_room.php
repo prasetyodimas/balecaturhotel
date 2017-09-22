@@ -5,7 +5,7 @@ if (empty($_POST['checkin']) AND empty($_POST['checkout']) AND empty($_POST['ber
 	exit();
 }
 // variable post checkin and checkout
-  $_SESSION['session_checkin']  		 = $_POST['checkin']; 
+  $_SESSION['session_checkin']  		 = $_POST['checkin'];
   $_SESSION['session_checkout']  		 = $_POST['checkout'];
   $_SESSION['session_jumlah_orang'] 	 = $_POST['berapa_orang'];
   $_SESSION['session_jumlah_kamar'] 	 = $_POST['berapa_kamar'];
@@ -33,7 +33,7 @@ if (empty($_POST['checkin']) AND empty($_POST['checkout']) AND empty($_POST['ber
 								Pencarian Kamar Telah ditemukan untuk <?php echo $_SESSION['session_jumlah_orang'];?> Orang dan <?php echo $_SESSION['session_jumlah_kamar']." Kamar";?>
 							</div>
 							<div class="panel-body">
-								<h5 style="text-align:center;">Ketersediaan kamar tanggal 
+								<h5 style="text-align:center;">Ketersediaan kamar tanggal
 								<span style="color:#e36c1a;font-size:15px;"><?php echo tgl_indo($_SESSION['session_checkin']); ?> s/d <?php echo tgl_indo($_SESSION['session_checkout']);?></span></h5>
 							</div>
 						</div>
@@ -41,10 +41,10 @@ if (empty($_POST['checkin']) AND empty($_POST['checkout']) AND empty($_POST['ber
 				</div>
 					<?php
 						// cek jika tanggal sama atau tidak dengan user lain
-						$cek_tgl_book_user = mysqli_query($konek,"SELECT b.checkin, 
+						$cek_tgl_book_user = mysqli_query($konek,"SELECT b.checkin,
 																		 b.checkout,
 
-													FROM temp_booking tb 
+													FROM temp_booking tb
 													JOIN booking b ON b.id_member=tb.id_member");
 
 						$no =1;
@@ -52,9 +52,9 @@ if (empty($_POST['checkin']) AND empty($_POST['checkout']) AND empty($_POST['ber
 									"SELECT km.id_kategori_kamar,
 									 		km.type_kamar,
 									 		km.tarif,
-									 		km.fasilitas, 
+									 		km.fasilitas,
 									 		km.foto_kamar,
-									 		km.jumlah_kamar_akhir, 
+									 		km.jumlah_kamar_akhir,
 									 		count(k.id_kamar) as stok_kmr
 									FROM kamar k JOIN kategori_kamar km ON k.id_kategori_kamar=km.id_kategori_kamar
 									WHERE km.jumlah_kamar_akhir!='0' GROUP BY km.id_kategori_kamar");
@@ -71,7 +71,7 @@ if (empty($_POST['checkin']) AND empty($_POST['checkout']) AND empty($_POST['ber
 			                $diskon_kamar = $getdiskon['besar_diskon'];
 			                $y            = $getdiskon['id_kategori_kamar'];
 			                //variable percent 10%
-							$percent = (($data['tarif']*10)/100); 
+							$percent = (($data['tarif']*10)/100);
 							//cek jika kamar nya == 0 tidak akan tampil kamar tersebut !!
 							//$stok_kamar_akhir = $data['jumlah_kamar_akhir'];
 					?>
