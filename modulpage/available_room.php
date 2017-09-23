@@ -41,8 +41,7 @@ if (empty($_POST['checkin']) AND empty($_POST['checkout']) AND empty($_POST['ber
 				</div>
 					<?php
 						// cek jika tanggal sama atau tidak dengan user lain
-						$cek_tgl_book_user = mysqli_query($konek,"SELECT b.checkin,
-																		 b.checkout,
+						$cek_tgl_book_user = mysqli_query($konek,"SELECT b.checkin, b.checkout,
 
 													FROM temp_booking tb
 													JOIN booking b ON b.id_member=tb.id_member");

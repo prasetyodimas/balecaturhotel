@@ -60,7 +60,7 @@
             <!-- Menu tabs top -->
             <ul class="nav nav-tabs">
               <li class="active"><a href="<?php echo 'homeadmin.php?modul=cek_kamar'?>">Aviability - Room</a></li>
-              <li><a href="<?php echo 'homeadmin.php?modul=cek_booking_kamar'?>">Booking - Room</a></li>
+              <!-- <li><a href="<?php echo 'homeadmin.php?modul=cek_booking_kamar'?>">Booking - Room</a></li> -->
             </ul>
             <div class="col pull-right">
                 <h5>Tanggal <?php echo datenow("y-m-d");?>
