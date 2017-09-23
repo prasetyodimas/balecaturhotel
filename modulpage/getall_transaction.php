@@ -11,11 +11,11 @@
 	}else{
 	//get session data member
 	$userid 	   = $_SESSION['id_member'];
-	$getuser 	   = mysqli_fetch_array(mysqli_query($konek,"SELECT id_member, 
-																    nama_lengkap, 
-																	alamat, 
-																    kebangsaan 
-														     FROM member 
+	$getuser 	   = mysqli_fetch_array(mysqli_query($konek,"SELECT id_member,
+																    nama_lengkap,
+																	alamat,
+																    kebangsaan
+														     FROM member
 														     WHERE id_member='$userid'"));
 	// menghitung jumlah hari usernya atau lama menginap
 	$var_days = round((strtotime($tgl_checkout)-strtotime($tgl_checkin))/86400);
@@ -76,7 +76,7 @@
 				},
 			},
 		});
-		//apend function 
+		//apend function
 		$('.click_adding_room_again').click(function(){
 			var adding_new_room = $('.add_body_room div.a').clone();
 			$('#apend-td').append(adding_new_room);
@@ -85,7 +85,7 @@
 		$('select.change_values_rent').on('change',function(){
 			var rentValue      = $('select.change_values_rent').find(':selected').data('id');
 			var totalValue 	   = $('#total_transaksi_kamar').val();
-			var subtotal_rents = parseFloat(rentValue)+parseFloat(totalValue); 
+			var subtotal_rents = parseFloat(rentValue)+parseFloat(totalValue);
 			$('.price-total').val(subtotal_rents);
 			$('#price-total-nonconvert').val(subtotal_rents);
 		});
@@ -98,7 +98,7 @@
 			$('.price-total').val(subtotal_bed);
 			$('#price-total-nonconvert').val(subtotal_bed);
         });
-		//statement jika member radio clicked	
+		//statement jika member radio clicked
 		$('input[type=radio][name=jenis_member]').click(function(){
 			var member_person=$(this).val();
 			$('.'+member_person).show();
@@ -130,10 +130,10 @@
         				}
             		}
             	});
-               
+
             }
         });
-	});	
+	});
 </script>
 <style type="text/css">
 /*======DETAIL TRANSAKSI=======*/
@@ -283,25 +283,27 @@
 										</tr>
 									</thead>
 									<tbody>
-									<?php 
-										$view_room_detail = mysqli_query($konek,"SELECT * FROM temp_booking tb 
-																							   JOIN kategori_kamar km ON km.id_kategori_kamar=tb.id_kategori_kamar 
-																				 WHERE tb.id_member='$userid'");
-										 while ($res_view = mysqli_fetch_array($view_room_detail)):
-											$price_room = $res_view['tarif']; 
-											$getdiskon = mysqli_fetch_array(mysqli_query($konek,"SELECT * FROM diskon WHERE id_kategori_kamar='$res_view[id_kategori_kamar]'"));
-											//mendefinisikan get diskonya berdasarkan kamar yang ada diskon
-											$y  		    = $getdiskon['id_kategori_kamar'];
-											$available_disc = $getdiskon['besar_diskon']; 
-											//deklarasi variable tarif
-											$tarifnya = $res_view['tarif'];
-											$x 		  = $res_view['id_kategori_kamar'];
-											//buat diskon
-											//variable percent 10%
-											$percent = (($price_room*$res_view['jumlah']*10)/100); 
-											//variable discount
-											$discount =(($price_room*$available_disc*$res_view['jumlah'])/100);
-											$count_total_price_and_tax +=(($price_room+$percent-$discount)*$var_days*$res_view['jumlah']);?>
+									<?php
+										$userSid = session_id();
+										$view_room_detail = mysqli_query($konek,
+																				"SELECT * FROM temp_booking tb
+																				 JOIN kategori_kamar km ON km.id_kategori_kamar=tb.id_kategori_kamar
+																				 WHERE tb.id_member='$userid' AND session='$userSid'");
+										while ($res_view = mysqli_fetch_array($view_room_detail)):
+										$price_room = $res_view['tarif'];
+										$getdiskon  = mysqli_fetch_array(mysqli_query($konek,"SELECT * FROM diskon WHERE id_kategori_kamar='$res_view[id_kategori_kamar]'"));
+										//mendefinisikan get diskonya berdasarkan kamar yang ada diskon
+										$y  		        = $getdiskon['id_kategori_kamar'];
+										$available_disc = $getdiskon['besar_diskon'];
+										//deklarasi variable tarif
+										$tarifnya 		  = $res_view['tarif'];
+										$x 		  		 		= $res_view['id_kategori_kamar'];
+										//buat diskon
+										//variable percent 10%
+										$percent = (($price_room*$res_view['jumlah']*10)/100);
+										//variable discount
+										$discount =(($price_room*$available_disc*$res_view['jumlah'])/100);
+										$count_total_price_and_tax +=(($price_room+$percent-$discount)*$var_days*$res_view['jumlah']);?>
 										<tr>
 											<td><?php echo $res_view['id_kategori_kamar'];?></td>
 											<td><?php echo $jumlah_kamar;?></td>
@@ -315,6 +317,7 @@
 												<a href="backend/proses_tambah_kamar_keranjang.php?act=delete_reservation&id=<?php echo $res_view['id_tempbooking']?>">delete
 											</td> -->
 										</tr>
+										<input type="hidden" value="<?php echo $userSid;?>">
 										<input type="hidden" name='kategori_kamar[]' value="<?php echo $res_view['id_kategori_kamar'];?>">
 									<?php endwhile; ?>
 									</tbody>
@@ -330,7 +333,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="fnt-style">Transaksi Lainya</h1>
-					<p>Kami menyediakan Layanan Rental, Restorasi Serta Extrabed untuk kebutuhan yang anda perlukan, Untuk layanan 
+					<p>Kami menyediakan Layanan Rental, Restorasi Serta Extrabed untuk kebutuhan yang anda perlukan, Untuk layanan
 					restorasi hanya </br>bisa dilakukan pada saat checkin tidak bisa memesan di jauh hari
 					</p>
 				</div>
@@ -346,12 +349,12 @@
 							<span class="content_nama_kendaraan">
 								<select name="id_rental" class="change_values_rent form-control" id="id_rental">
 									<option value="">Pilih kendaraan</option>
-									<?php 
+									<?php
 										$getrental  = mysqli_query($konek,"SELECT * FROM rental ORDER BY id_rental DESC");
 										while ($res = mysqli_fetch_array($getrental)) {
 											echo "<option value='".$res['id_rental']."' data-id='".$res['harga_kendaraan']."'>".$res['nama_kendaraan']."</option>";
 										}
-									?>							
+									?>
 								</select>
 							</span>
 						</div><!-- form inline-->
@@ -386,12 +389,12 @@
 						</div><!-- form inline-->
 				    </div><!-- BTN CLICK -->
 					<!-- EXTRABED-->
-					<div>				
-						<?php $get_extrabed = "SELECT id_extrabed, harga_extrabed FROM extrabed"; 
-							  $save = mysqli_query($konek,$get_extrabed); $show = mysqli_fetch_array($save); 
+					<div>
+						<?php $get_extrabed = "SELECT id_extrabed, harga_extrabed FROM extrabed";
+							  $save = mysqli_query($konek,$get_extrabed); $show = mysqli_fetch_array($save);
 						?>
-						<input type="checkbox" name="id_extrabed" id="change-extrabed" value="<?php echo $show['id_extrabed'];?>" data-extrabed="<?php echo $show['harga_extrabed'];?>" style="cursor:pointer;"> Tambah Extrabed + Rp.<?php echo formatuang($show['harga_extrabed']);?>	
-					</div>						
+						<input type="checkbox" name="id_extrabed" id="change-extrabed" value="<?php echo $show['id_extrabed'];?>" data-extrabed="<?php echo $show['harga_extrabed'];?>" style="cursor:pointer;"> Tambah Extrabed + Rp.<?php echo formatuang($show['harga_extrabed']);?>
+					</div>
 				</div>
 				<!-- TOTAL TRANSAKSI USER -->
 			</div><!--row-->
@@ -406,7 +409,7 @@
 				<!-- NAVIGATION CHECKOUT -->
 			</div><!--col-lg-12-->
 			<div class="row">
-				<div class="col-lg-12"> 
+				<div class="col-lg-12">
 					<div class="col pull-right">
 						<button class="btn btn-primary">Checkout</button>
 					</div>
@@ -432,15 +435,15 @@
 			      		<div class="col-md-6 form-inline">
 							: <select name="kategori_kamar" class="form-control" required>
 								<option value="">Pilih kamar</option>
-								<?php 
-									$get_other_room = mysqli_query($konek,"SELECT 
-																		  km.id_kategori_kamar, 
+								<?php
+									$get_other_room = mysqli_query($konek,"SELECT
+																		  km.id_kategori_kamar,
 																		  km.type_kamar,
-																		  km.jumlah_kamar_akhir, 
-																		  km.tarif, 
-																		  km.fasilitas,km.foto_kamar, 
+																		  km.jumlah_kamar_akhir,
+																		  km.tarif,
+																		  km.fasilitas,km.foto_kamar,
 																		  count(k.id_kamar) as stok_kmr
-																	FROM kamar k 
+																	FROM kamar k
 																	JOIN kategori_kamar km ON k.id_kategori_kamar=km.id_kategori_kamar
 										WHERE k.status_kamar !='3'AND k.status_kamar='2' GROUP BY k.id_kategori_kamar ASC");
 										while ($result_room_type = mysqli_fetch_array($get_other_room)) {
