@@ -14,22 +14,20 @@ if ($act='checkout_room') {
 																																		JOIN detail_booking_kamar dbk ON b.kd_booking=dbk.kd_booking
 																																		JOIN kategori_kamar km ON dbk.id_kategori_kamar=km.id_kategori_kamar
 																																		WHERE b.kd_booking='$_POST[kd_booking]'"));
-		$qtyRoomRequest = $view_permintaan_kamar['berapa_kamar'];
+		$qtyRoomRequest  = $view_permintaan_kamar['berapa_kamar'];
 		$checkroom_count = mysqli_fetch_array(mysqli_query($konek,"SELECT count(*) AS status FROM kamar WHERE status_kamar!='3' AND id_kategori_kamar='$caterooms'"));
-		$stockLast = $checkroom_count['status'];
-		$countAllStock = ($stockLast + $qtyRoomRequest);
-		// echo $countAllStock;
-
-		// function update stock
-		$updateStocklist = "UPDATE kategori_kamar SET jumlah_kamar_akhir='$countAllStock' WHERE id_kategori_kamar='$caterooms'";
-		$sucessfulled_saved = mysqli_query($konek,$updateStocklist);
-
+		$statusAllRoom   = $checkroom_count['status'];
+		$stockLast 	     = $view_permintaan_kamar['jumlah_kamar_akhir'];
+		$countAllStock   = ($stockLast + $qtyRoomRequest);
 		// function update status room
 		$updateRoomStat = "UPDATE kamar SET status_kamar='2' WHERE id_kategori_kamar='$caterooms' AND id_kamar='$array_room[$i]'";
 		$savedSucces =mysqli_query($konek,$updateRoomStat);
-
 		$i++;
 	}//endforeach
+	
+	// function update stock
+	$updateStocklist = "UPDATE kategori_kamar SET jumlah_kamar_akhir='$countAllStock' WHERE id_kategori_kamar='$caterooms'";
+	$sucessfulled_saved = mysqli_query($konek,$updateStocklist);
 	if ($succes_update_status && $sucessfulled_saved && $savedSucces) {
 			echo "<script>alert('checkout kamar berhasil dilakukan !!')</script>";
       echo "<meta http-equiv=refresh content=0;url=$site"."adminbase/homeadmin.php?modul=man_willbe_checkin>";

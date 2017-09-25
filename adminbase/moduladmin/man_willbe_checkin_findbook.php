@@ -1,4 +1,5 @@
 <?php error_reporting(0);
+	$sessId = session_id();
 include "../fungsi/function_transaksi.php"; ?>
 <div class="row">
 	<div class="col-lg-12">
@@ -164,9 +165,12 @@ include "../fungsi/function_transaksi.php"; ?>
 						<td>Rp.<?php echo formatuang($count_total_price_and_tax);?></td>
 						<td class="col-md-1">
 							<?php
-								$getno_kamar = mysqli_query($konek,"SELECT * FROM kamar
-																	WHERE status_kamar!='3'
-																	AND id_kategori_kamar='$kategori_kamar'");
+								$getno_kamar = mysqli_query($konek,"SELECT b.kd_booking, k.id_kategori_kamar, k.id_kamar, tb.session, b.id_member, b.status_userbook, tb.jumlah 
+																    FROM kamar k
+																	JOIN temp_booking tb ON tb.id_kategori_kamar=k.id_kategori_kamar
+																	JOIN booking b ON b.id_member=tb.id_member
+																	WHERE k.status_kamar!='3'
+																	AND k.id_kategori_kamar='$kategori_kamar' AND b.status_userbook!='CO' AND tb.session='$sessId' GROUP BY k.id_kategori_kamar");
 								while ($res_no_room = mysqli_fetch_array($getno_kamar)) {
 									echo "<input type='checkbox' name='array_nokamar' id='kamar_aray' style='cursor:pointer;' value='".$res_no_room['id_kamar']."'>". $res_no_room['id_kamar'] ."</radio>";
 								}
