@@ -54,21 +54,21 @@
 	.detil-transaction .man-umlahorang{margin-left: 206px; }
 	.detil-transaction .man-statususerbook{margin-left: 225px;}
 	.detil-transaction .man-nama_atasnama{margin-left: 183px;}
-    .detil-transaction .man-company_or_other{margin-left: 122px;}
+  .detil-transaction .man-company_or_other{margin-left: 122px;}
 	.pembayaran-transaksi .man-carabayar{margin-left: 225px; }
 	.pembayaran-transaksi .man-jenispelunasan{margin-left: 193px;}
 	.pembayaran-transaksi .man-jenisbank{margin-left: 225px;}
 	.pembayaran-transaksi .man-totalbayar{margin-left: 223px;}
 	.pembayaran-transaksi .man-tglbayar{margin-left: 203px;}
 	.pembayaran-transaksi .man-buktipembayaran{margin-left: 183px;}
-    .pembayaran-transaksi .man-hutangbayar{margin-left: 207px;}
-    .other-transac-kategori-rental{margin-left: 100px;}
-    .other-transac-nama_kendaraan{margin-left: 81px;}
-    .other-transac-tgl_awal_sewa{margin-left: 105px;}
-    .other-transac-harga_kendaraan{margin-left: 81px;}
-    .other-transac-nama-paket{margin-left: 100px;}
-    .other-transac-harga-paket{margin-left: 100px;}
-    .other-transac-keterangan-menunya{margin-left: 42px;}
+  .pembayaran-transaksi .man-hutangbayar{margin-left: 207px;}
+  .other-transac-kategori-rental{margin-left: 100px;}
+  .other-transac-nama_kendaraan{margin-left: 81px;}
+  .other-transac-tgl_awal_sewa{margin-left: 105px;}
+  .other-transac-harga_kendaraan{margin-left: 81px;}
+  .other-transac-nama-paket{margin-left: 100px;}
+  .other-transac-harga-paket{margin-left: 100px;}
+  .other-transac-keterangan-menunya{margin-left: 42px;}
 </style>
 	<div class="col-lg-12">
 		<div class="font-sizerheading">
@@ -162,8 +162,8 @@
 							<td>Rp.<?php echo formatuang(($price_room+$percent-$discount)*$jumlah_hari);?></td>
 						</tr>
 					</tbody>
-					<input type="text" name="category_room[]" value="<?php echo $result_room['id_kategori_kamar'];?>">
-					<input type="text" name="no_room_category[]" value="<?php echo $result_room['id_kamar'];?>">
+					<input type="hidden" name="category_room[]" value="<?php echo $result_room['id_kategori_kamar'];?>">
+					<input type="hidden" name="no_room_category[]" value="<?php echo $result_room['id_kamar'];?>">
 					<?php } ?>
 				</table>
 			</div>
